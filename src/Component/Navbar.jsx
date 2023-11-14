@@ -1,11 +1,48 @@
 import { Link, NavLink } from "react-router-dom";
+import Useauth from "../Hook.jsx/Useauth";
+import Swal from "sweetalert2";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import Usecart from "../pages/Usecart";
+
 
 const Navbar = () => {
+  const {user,logout}=Useauth()
+  const [cart]=Usecart()
+
   const header=<div  className="lg:flex  text-2xl  gap-2  ">
   <li><NavLink to='/'>Home</NavLink></li>
   <li><NavLink to='/menu'>Our Menu</NavLink></li>
   <li><NavLink to='/order'>Order</NavLink></li>
+  <li><NavLink to='/secret'>Secret</NavLink></li>
+  <li><NavLink to='/dashboard/Cart'>
+  <button className="btn text-2xl">
+  <AiOutlineShoppingCart />
+
+  <div className="badge">+{cart.length}</div>
+</button>
+    </NavLink></li>
+
 </div>
+
+
+const handlelogout=()=>{
+  logout()
+  .then(()=>{
+    Swal.fire(
+      '',
+      'You have successfully logout from this site!',
+      'success'
+    )
+  })
+  .catch(()=>{
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!',
+      footer: '<a href="">Why do I have this issue?</a>'
+    })
+  })
+}
     return (
       <div className="navbar fixed z-20 opacity-60 text-white bg-black max-w-[1217px] mx-auto bg-base-100">
   <div className="navbar-start">
@@ -18,7 +55,7 @@ const Navbar = () => {
       </ul>
     </div>
   
-    <a className="  btn btn-ghost normal-case lg:text-3xl font-bold"><span className="text-fuchsia-900">Tecnology</span> & Electronics</a>
+    <a className="  btn btn-ghost normal-case lg:text-3xl font-bold"></a>
   
    
   </div>
@@ -30,7 +67,14 @@ const Navbar = () => {
   <div className="navbar-end">
  
             
-            <button className="btn text-2xl"><Link to='/login'>Login</Link> </button>
+  {
+            user? <div className="flex gap-5">
+              <img className="w-10 rounded-full" src={user.photoURL} alt="" />  
+             <Link to='/'> <button onClick={handlelogout} className="btn lg:text-xl">Logout</button></Link>
+              </div>
+            
+            :<button className="btn text-2xl"><Link to='/login'>Login</Link> </button>
+          } 
           
   </div>
   <div className="ml-2">

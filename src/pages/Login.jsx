@@ -1,12 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import Swal from "sweetalert2";
+import Useauth from "../Hook.jsx/Useauth";
 
 
 const Login = () => {
+  const {createsignin}=Useauth()
     const captcharef=useRef(null)
     const [disabled,setdisabled]=useState(true)
+    const navigate =useNavigate()
+    const location =useLocation()
+
+    const from=location.state?.from?.pathname ||"/";
+    console.log('state in the location',location.state)
 
     useEffect(()=>{
         loadCaptchaEnginge(6); 
@@ -19,24 +27,29 @@ const Login = () => {
         const password=e.target.password.value 
         console.log(email,password)
 
-        // createsignin(email,password)
-        //   .then(()=>{
-        //     Swal.fire(
-        //         'Good job!',
-        //         'You have successfully login!',
-        //         'success'
-        //       )
-        //   })
-        //   .catch(()=>{
-        //     Swal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'Something went wrong!',
-        //         footer: '<a href="">Why do I have this issue?</a>'
-        //       })
-        //   })
+        createsignin(email,password)
+          .then(()=>{
+            
+            Swal.fire(
+                'Good job!',
+                'You have successfully login!',
+                'success'
+              )
+              navigate(from,{replace:true})
+          })
+
+          .catch(()=>{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: '<a href="">Why do I have this issue?</a>'
+              })
+          })
            
     }
+
+   
 
     const validatebtn=()=>{
        const user_value = captcharef.current.value
@@ -89,7 +102,7 @@ const Login = () => {
               </div>
               <div className="form-control mt-6">
                 
-                    <button disabled={disabled} className="btn btn-primary ">Login</button>
+                    <button disabled={false} className="btn btn-primary ">Login</button>
               </div>
               <div className=" my-5">
                 <p className="text-white">Are complete register? 

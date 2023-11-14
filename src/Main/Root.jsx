@@ -7,12 +7,17 @@ const Root = () => {
 
     const location =useLocation()
     console.log(location)
-    const noheaderfooter=location.pathname.includes('/login')
-    return (
+    const noheaderfooter=location.pathname.includes('/login')||
+    location.pathname.includes('/register')
+  
+        return (
         <div>
              {noheaderfooter || <Navbar></Navbar>}
+             
+
             <Outlet></Outlet>
             {noheaderfooter || <Footer></Footer>}
+           
             
         </div>
     );
