@@ -1,12 +1,14 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import Useauth from "../Hook.jsx/Useauth";
 import Swal from "sweetalert2";
+import Useaxiospublic from "../Hook.jsx/Useaxiospublic";
 
 const Register = () => {
     const {createregister,updateprofile}=Useauth()
-    // const navigate=useNavigate()
+    const navigate=useNavigate()
 
     const handleregister = e => {
+      const axiospublic=Useaxiospublic()
 
         e.preventDefault()
         const email = e.target.email.value
@@ -17,14 +19,23 @@ const Register = () => {
         console.log(email, password, name,photo)
         createregister(email,password)
         .then(()=>{
-            Swal.fire(
+          const userinfo={
+            name:name,
+            email:email
+          }
+          axiospublic.post('/user',userinfo)
+          .then(res=>{
+            if(res.data.insertedId){
+              Swal.fire(
                 'Good job!',
                 'You have Successfully Register!',
                 'success'
               )
-             
+              navigate('/')
 
-              // navigate('/')
+            }
+          })
+           
         })
         .catch(()=>{
             Swal.fire({

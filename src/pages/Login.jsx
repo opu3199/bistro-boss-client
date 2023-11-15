@@ -4,10 +4,11 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import Swal from "sweetalert2";
 import Useauth from "../Hook.jsx/Useauth";
+import { AiFillGoogleCircle } from "react-icons/ai";
 
 
 const Login = () => {
-  const {createsignin}=Useauth()
+  const {createsignin,googlelogin}=Useauth()
     const captcharef=useRef(null)
     const [disabled,setdisabled]=useState(true)
     const navigate =useNavigate()
@@ -58,6 +59,13 @@ const Login = () => {
         }
 
     }
+
+    const handlegoogle=()=>{
+      googlelogin()
+  .then(res=>console.log(res.user))
+  .catch(error=>console.error(error))
+      
+  }
 
     return (
         <div>
@@ -111,7 +119,7 @@ const Login = () => {
                  </p> 
               </div>
               <hr />
-              {/* <button onClick={handlegoogle} className="text-4xl text-green-600 w-full flex justify-center bg-white"><AiFillGoogleCircle></AiFillGoogleCircle></button> */}
+              <button onClick={handlegoogle} className="text-4xl text-green-600 w-full flex justify-center bg-white"><AiFillGoogleCircle></AiFillGoogleCircle></button>
 
 
               </form>

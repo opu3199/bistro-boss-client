@@ -1,7 +1,9 @@
 import { AiOutlineCalendar, AiOutlineFileAdd, AiOutlineHome, AiOutlineMenu, AiOutlineOrderedList, AiOutlineShoppingCart } from "react-icons/ai";
 import { NavLink, Outlet } from "react-router-dom";
+import Usecart from "../pages/Usecart";
 
 const Dashboard = () => {
+    const [cart]=Usecart()
     return (
         <div className="flex">
             <div className="w-64 min-h-screen  bg-orange-400">
@@ -17,7 +19,7 @@ const Dashboard = () => {
                     <li>
                         <NavLink to="/dashboard/Cart">
                         <AiOutlineShoppingCart/>
-                             My Cart</NavLink>
+                             My Cart ({cart.length})</NavLink>
                     </li>
 
                     <li>

@@ -1,10 +1,40 @@
 import { AiOutlineDelete } from "react-icons/ai";
 import Usecart from "../pages/Usecart";
+import Swal from "sweetalert2";
+import Useaxios from "../Hook.jsx/Useaxios";
 
 
 const DashCart = () => {
-    const [cart]=Usecart()
+    const [cart,refetch]=Usecart()
     const totalprice=cart.reduce((total,item)=>total+item.price,0)
+    const axiossecure=Useaxios()
+
+    const handledelete=id=>{
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  axiossecure.delete(`/cart/${id}`)
+                  .then(res=>{
+                    if(res.data.deletedCount > 0){
+                        refetch()
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                          });
+
+                    }
+                  })
+                }
+              });
+    }
     return (
         <div>
             <div className="flex justify-evenly">
@@ -50,7 +80,7 @@ const DashCart = () => {
                 </td>
                 <td>{item.price}</td>
                 <th>
-                  <button className="btn btn-ghost btn-xs  ">
+                  <button onClick={()=>handledelete(item._id)} className="btn btn-ghost btn-xs  ">
                  <  AiOutlineDelete className=" text-xl text-red-600"></AiOutlineDelete>
                   </button>
                 </th>
