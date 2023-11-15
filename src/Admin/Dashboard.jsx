@@ -1,4 +1,4 @@
-import { AiOutlineCalendar, AiOutlineFileAdd, AiOutlineHome, AiOutlineOrderedList, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineCalendar, AiOutlineFileAdd, AiOutlineHome, AiOutlineMenu, AiOutlineOrderedList, AiOutlineShoppingCart } from "react-icons/ai";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
@@ -39,10 +39,30 @@ const Dashboard = () => {
                              My Bookings</NavLink>
                     </li>
 
+                    <div className="divider "></div>
+
+                    <li>
+                     <NavLink to="/dashboard/home">
+                      <AiOutlineHome/>
+
+                        User Home</NavLink>
+                   </li>
+
+                   <li>
+                     <NavLink to="/order">
+                      <AiOutlineMenu></AiOutlineMenu>
+
+                        Menu</NavLink>
+                   </li>
+
+                  
+
                 </ul>
 
+              
+
             </div>
-            <div className="flex-1">
+            <div className="flex-1 p-10">
                 <Outlet></Outlet>
             </div>
             
