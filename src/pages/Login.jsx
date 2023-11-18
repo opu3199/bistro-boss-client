@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import Swal from "sweetalert2";
 import Useauth from "../Hook.jsx/Useauth";
-import { AiFillGoogleCircle } from "react-icons/ai";
+import Socillogin from "../Hook.jsx/Socillogin";
 
 
 const Login = () => {
-  const {createsignin,googlelogin}=Useauth()
+  const {createsignin}=Useauth()
     const captcharef=useRef(null)
     const [disabled,setdisabled]=useState(true)
     const navigate =useNavigate()
@@ -60,12 +60,7 @@ const Login = () => {
 
     }
 
-    const handlegoogle=()=>{
-      googlelogin()
-  .then(res=>console.log(res.user))
-  .catch(error=>console.error(error))
-      
-  }
+   
 
     return (
         <div>
@@ -79,7 +74,7 @@ const Login = () => {
            
           </div>
           <div className="card flex-shrink-0 w-full    shadow-2xl bg-base-100">
-            <div className="card-body bg-fuchsia-950 ">
+            <div className="card-body bg-teal-200 ">
                 <form onSubmit={handlelogin} className="lg:w-1/2 mx-auto" >
             
               <div className="form-control">
@@ -118,10 +113,9 @@ const Login = () => {
                  <span className="text-blue-600 font-bold text-xl"><NavLink to="/register">Register</NavLink> </span>
                  </p> 
               </div>
-              <hr />
-              <button onClick={handlegoogle} className="text-4xl text-green-600 w-full flex justify-center bg-white"><AiFillGoogleCircle></AiFillGoogleCircle></button>
 
-
+              <Socillogin></Socillogin>
+        
               </form>
             </div>
            

@@ -22,6 +22,8 @@ import {
 } from '@tanstack/react-query'
 import Dashboard from './Admin/Dashboard.jsx';
 import DashCart from './Admin/DashCart.jsx';
+import Alluser from './Admin/Alluser.jsx';
+import Additem from './Admin/Additem.jsx';
 
 const queryClient = new QueryClient()
 
@@ -64,6 +66,14 @@ const router = createBrowserRouter([
       {
         path:'Cart',
         element:<DashCart></DashCart>
+      },
+      {
+        path:'users',
+        element:<Alluser></Alluser>
+      },
+      {
+        path:'additem',
+        element:<Additem></Additem>
       }
     ]
   }

@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Useauth from "../Hook.jsx/Useauth";
 import Swal from "sweetalert2";
 import Useaxiospublic from "../Hook.jsx/Useaxiospublic";
+import Socillogin from "../Hook.jsx/Socillogin";
 
 const Register = () => {
     const {createregister,updateprofile}=Useauth()
@@ -108,6 +109,8 @@ const Register = () => {
                  </p> 
               </div>
               <hr />
+
+              <Socillogin></Socillogin>
               
 
 

@@ -1,14 +1,57 @@
-import { AiOutlineCalendar, AiOutlineFileAdd, AiOutlineHome, AiOutlineMenu, AiOutlineOrderedList, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineBook, AiOutlineCalendar, AiOutlineContacts, AiOutlineFileAdd, AiOutlineHome, AiOutlineMenu, AiOutlineOrderedList, AiOutlineShoppingCart, AiOutlineUser, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { NavLink, Outlet } from "react-router-dom";
 import Usecart from "../pages/Usecart";
+import Useradmin from "../Hook.jsx/Useradmin";
 
 const Dashboard = () => {
     const [cart]=Usecart()
+    const isAdmin=Useradmin()
     return (
         <div className="flex">
             <div className="w-64 min-h-screen  bg-orange-400">
                 <ul className="menu space-y-5">
-                 <li>
+
+                    {
+                      isAdmin  ?
+                      <>
+                        <li>
+                     <NavLink to="/dashboard/adminhome">
+                      <AiOutlineHome/>
+
+                        Admin Home</NavLink>
+                   </li>
+
+
+                    <li>
+                        <NavLink to="/dashboard/additem">
+                        <AiOutlineShoppingCart></AiOutlineShoppingCart>
+                             Add Item</NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/dashboard/manage">
+                        <AiOutlineOrderedList/>
+                             Manage Item</NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/dashboard/booking">
+                        <AiOutlineBook/>
+
+                             My Bookings</NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/dashboard/users">
+                        <AiOutlineUsergroupAdd/>
+                             All Users</NavLink>
+                    </li>
+
+                      </>
+                       :
+                       <>
+
+<li>
                      <NavLink to="/dashboard/home">
                       <AiOutlineHome/>
 
@@ -41,10 +84,14 @@ const Dashboard = () => {
                              My Bookings</NavLink>
                     </li>
 
+                       </>
+                    }
+               
+
                     <div className="divider "></div>
 
                     <li>
-                     <NavLink to="/dashboard/home">
+                     <NavLink to="/">
                       <AiOutlineHome/>
 
                         User Home</NavLink>
@@ -55,6 +102,12 @@ const Dashboard = () => {
                       <AiOutlineMenu></AiOutlineMenu>
 
                         Menu</NavLink>
+                   </li>
+                   <li>
+                     <NavLink to="/order/contact">
+                      <AiOutlineContacts></AiOutlineContacts>
+
+                        Conatact</NavLink>
                    </li>
 
                   
