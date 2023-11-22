@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router-dom";
 import Useaxiospublic from "../Hook/Useaxiospublic";
 import Useaxios from "../Hook/Useaxios";
 import Swal from "sweetalert2";
 
-
 const image_hosting_key=import.meta.env. VITE_IMAGE_HOSTING_KEY
 const image_hosting_api=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
-const Additem = () => {
+const Upadte = () => {
+    const {name,category,recipe,price,image,_id}=useLoaderData()
     const { register, handleSubmit } = useForm()
+
     const axiospublic=Useaxiospublic()
     const axiossecure=Useaxios()
     const onSubmit= async (data) => {
@@ -27,7 +29,7 @@ const Additem = () => {
           recipe:data.recipe,
           image:res.data.data.display_url
          }
-         const menures=await axiossecure.post('/menu',menuitem)
+         const menures=await axiossecure.patch(`/menu/${_id}`,menuitem)
          console.log(menures.data)
          if(menures.data.insertedId){
           Swal.fire({
@@ -43,22 +45,16 @@ const Additem = () => {
 
     }
     
-   //handleSubmit
+  
     return (
         <div>
-        <div className="w-1/2 mx-auto space-y-4 ">
-          <h1 className="text-xl font-bold text-amber-300">What's New</h1>
-          <hr />
-          <h1 className="text-3xl font-bold">Add Item</h1>
-          <hr />
-        </div>
-
+            
 <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-control w-full my-6">
   <label className="label">
     <span className="label-text">Recipe Name</span>
   </label>
-  <input type="text" {...register("name")} placeholder="Recipe name" className="input input-bordered w-full " /> 
+  <input defaultValue={name} type="text" {...register("name")} placeholder="Recipe name" className="input input-bordered w-full " /> 
 </div>
 
 <div className="flex gap-3">
@@ -67,8 +63,8 @@ const Additem = () => {
   <label className="label">
     <span className="label-text">Category</span>
   </label>
-  <select defaultValue="default" {...register('category')} className="select select-bordered w-full max-w-xs">
-  <option disabled value="default">Category</option>
+  <select  defaultValue="default" {...register('category')} className="select select-bordered w-full max-w-xs">
+  <option defaultValue={category} disabled value="default">Category</option>
         <option value="salad">Salad</option>
         <option value="pizza">Pizza</option>
         <option value="dessert">Dessert</option>
@@ -80,7 +76,7 @@ const Additem = () => {
   <label className="label">
     <span className="label-text">Price</span>
   </label>
-  <input type="number" {...register("price")} placeholder="Price" className="input input-bordered w-full " /> 
+  <input type="number" defaultValue={price} {...register("price")} placeholder="Price" className="input input-bordered w-full " /> 
 </div>
 
 </div>
@@ -88,17 +84,15 @@ const Additem = () => {
   <label className="label">
     <span className="label-text">Recipe Details</span>
   </label>
-  <textarea  {...register("recipe")} className="textarea textarea-bordered h-24" placeholder="Recipe Details"></textarea>
+  <textarea  defaultValue={recipe} {...register("recipe")} className="textarea textarea-bordered h-24" placeholder="Recipe Details"></textarea>
 </div>
 
-<input  {...register("image")} type="file" className="file-input flex  mt-5 file-input-bordered lg:w-1/2 " />
-      <button className="btn mt-5 flex">Add Item</button>
+<input defaultValue={image}  {...register("image")} type="file" className="file-input flex  mt-5 file-input-bordered lg:w-1/2 " />
+      <button className="btn mt-5 flex">Update Item</button>
     </form>
-
-
+            
         </div>
-       
     );
 };
 
-export default Additem;
+export default Upadte;

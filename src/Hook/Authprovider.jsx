@@ -49,19 +49,19 @@ const Authprovider = ({children}) => {
     useEffect(()=>{
         return onAuthStateChanged(auth, (user) => {
               setuser(user)
-              if(user){
-                const userinfo={email:user.email}
-                axiospublic.post('/jwt',userinfo)
-                .then(res=>{
-                    if(res.data.token){
-                        localStorage.setItem('access-token',res.data.token)
-                    }
-              })
-              }
-              else{
-                localStorage.removeItem('access-token')
+            //   if(user){
+            //     const userinfo={email:user.email}
+            //     axiospublic.post('/jwt',userinfo)
+            //     .then(res=>{
+            //         if(res.data.token){
+            //             localStorage.setItem('access-token',res.data.token)
+            //         }
+            //   })
+            //   }
+            //   else{
+            //     localStorage.removeItem('access-token')
 
-              }
+            //   }
 
               setloading(false)
            });

@@ -1,8 +1,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import Useauth from "../Hook.jsx/Useauth";
+import Useauth from "../Hook/Useauth";
 import Swal from "sweetalert2";
-import Useaxiospublic from "../Hook.jsx/Useaxiospublic";
-import Socillogin from "../Hook.jsx/Socillogin";
+import Useaxiospublic from "../Hook/Useaxiospublic";
+import Socillogin from "../Hook/Socillogin";
 
 const Register = () => {
     const {createregister,updateprofile}=Useauth()

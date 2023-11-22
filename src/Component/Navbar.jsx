@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import Useauth from "../Hook.jsx/Useauth";
+import Useauth from "../Hook/Useauth";
 import Swal from "sweetalert2";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Usecart from "../pages/Usecart";

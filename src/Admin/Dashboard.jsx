@@ -1,7 +1,7 @@
 import { AiOutlineBook, AiOutlineCalendar, AiOutlineContacts, AiOutlineFileAdd, AiOutlineHome, AiOutlineMenu, AiOutlineOrderedList, AiOutlineShoppingCart, AiOutlineUser, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { NavLink, Outlet } from "react-router-dom";
 import Usecart from "../pages/Usecart";
-import Useradmin from "../Hook.jsx/Useradmin";
+import Useradmin from "../Hook/Useradmin";
 
 const Dashboard = () => {
     const [cart]=Usecart()

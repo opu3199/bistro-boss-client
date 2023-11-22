@@ -1,7 +1,7 @@
 // import { useParams } from "react-router-dom";
 // import Menu from "../Component/Menu"
 import Section from "../Component/Section";
-import Hook from "../Hook.jsx/Hook";
+import Hook from "../Hook/Hook";
 import Menucategories from "./Menucategories";
 import Menucover from "./Menucover";
 const Ourmenu = () => {

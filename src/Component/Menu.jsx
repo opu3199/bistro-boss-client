@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Hook from "../Hook.jsx/Hook";
+import Hook from "../Hook/Hook";
 
 
 const Menu = () => {

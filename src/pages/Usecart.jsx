@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import Useaxios from "../Hook.jsx/Useaxios";
-import Useauth from "../Hook.jsx/Useauth";
+import Useaxios from "../Hook/Useaxios";
+import Useauth from "../Hook/Useauth";
 
 
 const Usecart = () => {

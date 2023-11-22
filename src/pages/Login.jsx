@@ -3,8 +3,8 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import Swal from "sweetalert2";
-import Useauth from "../Hook.jsx/Useauth";
-import Socillogin from "../Hook.jsx/Socillogin";
+import Useauth from "../Hook/Useauth";
+import Socillogin from "../Hook/Socillogin";
 
 
 const Login = () => {

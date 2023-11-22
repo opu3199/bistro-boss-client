@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import Useaxios from "../Hook.jsx/Useaxios";
+import Useaxios from "../Hook/Useaxios";
 import { AiOutlineDelete, AiOutlineUser } from "react-icons/ai";
 import Swal from "sweetalert2";
 

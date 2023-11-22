@@ -11,10 +11,10 @@ import Home from './Main/Home.jsx';
 import Ourmenu from './pages/Ourmenu.jsx';
 import Order from './pages/Order.jsx';
 import Login from './pages/Login.jsx';
-import Authprovider from './Hook.jsx/Authprovider.jsx';
+import Authprovider from './Hook/Authprovider.jsx';
 import Register from './pages/Register.jsx';
 import Secret from './pages/Secret.jsx';
-import Privateroute from './Hook.jsx/Privateroute.jsx';
+import Privateroute from './Hook/Privateroute.jsx';
 
 import {
   QueryClient,
@@ -24,6 +24,9 @@ import Dashboard from './Admin/Dashboard.jsx';
 import DashCart from './Admin/DashCart.jsx';
 import Alluser from './Admin/Alluser.jsx';
 import Additem from './Admin/Additem.jsx';
+import Manageitem from './Admin/Manageitem.jsx';
+import Upadte from './Admin/Upadte.jsx';
+import Payment from './Admin/Payment.jsx';
 
 const queryClient = new QueryClient()
 
@@ -74,7 +77,21 @@ const router = createBrowserRouter([
       {
         path:'additem',
         element:<Additem></Additem>
+      },
+      {
+        path:'manage',
+        element:<Manageitem></Manageitem>
+      },
+      {
+        path:'update/:id',
+        element:<Upadte></Upadte>,
+        loader:({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
+      },
+      {
+        path:'payment',
+        element:<Payment></Payment>
       }
+    
     ]
   }
 ]);

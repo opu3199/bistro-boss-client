@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 
 import Swal from "sweetalert2";
-import Useauth from "../Hook.jsx/Useauth";
+import Useauth from "../Hook/Useauth";
 import { useLocation, useNavigate } from "react-router-dom";
-import Useaxios from "../Hook.jsx/Useaxios";
+import Useaxios from "../Hook/Useaxios";
 import Usecart from "./Usecart";
 
 const Foodcart = ({items}) => {

@@ -5,7 +5,7 @@ import axios from "axios";
 })
 const Useaxios = () => {
    axiossecure.interceptors.request.use(function(config){
-      console.log('request stopp interseptors')
+      // console.log('request stopp interseptors')
       return config
    },function(error){
       return Promise.reject(error)

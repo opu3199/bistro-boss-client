@@ -1,7 +1,7 @@
 import shop from '../assets/shop/banner2.jpg'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import Hook from '../Hook.jsx/Hook';
+import Hook from '../Hook/Hook';
 import Foodcart from './Foodcart';
 const Order = () => {
     const [menu]=Hook()

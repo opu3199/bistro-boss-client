@@ -1,7 +1,8 @@
 import { AiOutlineDelete } from "react-icons/ai";
 import Usecart from "../pages/Usecart";
 import Swal from "sweetalert2";
-import Useaxios from "../Hook.jsx/Useaxios";
+import Useaxios from "../Hook/Useaxios";
+import { Link } from "react-router-dom";
 
 
 const DashCart = () => {
@@ -40,7 +41,12 @@ const DashCart = () => {
             <div className="flex justify-evenly">
                 <h1 className="text-4xl font-bold">Items: {cart.length}</h1>
                 <h1 className="text-4xl font-bold">Total Price: {totalprice}</h1>
+               {
+               cart.length ? <Link to="/dashboard/payment">
                 <button className="btn btn-primary">Pay</button>
+                </Link>:
+                 <button disabled={!cart.length} className="btn btn-primary">Pay</button>
+               }
             </div>
 
             <div className="overflow-x-auto">
